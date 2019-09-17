@@ -487,8 +487,29 @@ console.log(ticketPriceTotal);
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1:
+// Problem 1: The printers need each person's company name to be capitalized to make it easier
+//in their system for printing purposes.
+console.log(runners.map(runner => runner.company_name.toUpperCase()));
 
-//Problem 2:
+//Problem 2: Some companies felt bad that they didn't donate more money.
+//Several runners ganged up and shamed them into tripling their donation if they
+//had originally donated less than $500.00.. Now we need to see the updated
+//amount of donations
 
-// Problem 3
+console.log(
+  runners
+    .filter(runner => runner.donation < 500)
+    .map(runner => runner.donation * 3)
+    .reduce((total, donation) => total + donation, 0),
+);
+
+// Problem 3: The small shirts won't be available for the event due to the ordering manager dropping
+// the ball. We need a filtered version of the runners array, containing only those runners with
+//small sized shirts so they can choose a different size. This will be an array of objects.
+let smallShirts = [];
+runners.filter(runner => {
+  if (runner.shirt_size === 'S') {
+    smallShirts.push(runner);
+  }
+});
+console.log(smallShirts);
